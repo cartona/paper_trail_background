@@ -26,6 +26,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'sidekiq', '~> 6.2.2'
   spec.add_development_dependency 'sqlite3', '~> 1.4.2'
 
-  spec.add_runtime_dependency 'ar_after_transaction', '~> 0.7.0'
-  spec.add_runtime_dependency 'paper_trail', '~> 12.0.0'
+  spec.add_runtime_dependency 'ar_after_transaction', '~> 0.8.0'
+  spec.add_runtime_dependency 'paper_trail', '~> 12.2.0'
 end
