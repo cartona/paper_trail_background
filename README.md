@@ -1,8 +1,7 @@
 # paper_trail_background
 
-  - [![Build](http://img.shields.io/travis-ci/krainboltgreene/paper_trail_background.svg?style=flat-square)](https://travis-ci.org/krainboltgreene/paper_trail_background)
-  - [![Downloads](http://img.shields.io/gem/dtv/paper_trail_background.svg?style=flat-square)](https://rubygems.org/gems/paper_trail_background)
-  - [![Version](http://img.shields.io/gem/v/paper_trail_background.svg?style=flat-square)](https://rubygems.org/gems/paper_trail_background)
+  - [![Downloads](http://img.shields.io/gem/dtv/paper_trail-background.svg?style=flat-square)](https://rubygems.org/gems/paper_trail-background)
+  - [![Version](http://img.shields.io/gem/v/paper_trail-background.svg?style=flat-square)](https://rubygems.org/gems/paper_trail-background)
 
 
 Allows you to enqueue version creation/deletion as a background job to avoid having business logic blocked by changelog writing.
@@ -15,20 +14,29 @@ First you'll need to setup a job for processing versions:
 ``` ruby
 # The class MUST be named this
 class VersionJob < ApplicationJob
-
-  # These are settings you'll probably want, I suggest sidekiq-unique-jobs
-  sidekiq_options(
-    :queue => "versions",
-    :unique_across_queues => true,
-    :lock => :until_executed,
-    :log_duplicate_payload => true
-  )
+  queue_as :default
 
   # This wires up the background job
-  include PaperTrail::Background::Sidekiq
+  include PaperTrail::Background::Job
 end
 ```
 
+## Configuration
+In an initializer, you can specify whether you want to opt into this behavior on a per-model basis:
+
+``` ruby
+PaperTrail::Background::Config.configure do |config|
+  config.opt_in = true
+end
+```
+
+If opt-in behavior is set to `true`, you can enable async paper trails by specifying `async: true` in a given model's paper trail options:
+
+``` ruby
+class SomeModel < ActiveRecord::Base
+  has_paper_trail async: true
+end
+```
 
 ## Installing
 
