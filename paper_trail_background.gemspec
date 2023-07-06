@@ -16,16 +16,16 @@ Gem::Specification.new do |spec|
   spec.files = Dir[File.join('lib', '**', '*'), 'LICENSE', 'README.md', 'Rakefile']
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '>= 2.5.0'
+  spec.required_ruby_version = '>= 3.2.0'
 
-  spec.add_development_dependency 'bundler', '~> 2.2.29'
+  spec.add_development_dependency 'bundler', '~> 2.4.8'
   spec.add_development_dependency 'byebug', '~> 11.0'
-  spec.add_development_dependency 'rails', '~> 6.0.4.1'
+  spec.add_development_dependency 'rails', '>= 6.0.4.1'
   spec.add_development_dependency 'rake', '~> 13.0.6'
   spec.add_development_dependency 'rspec', '~> 3.10.0'
   spec.add_development_dependency 'sidekiq', '~> 6.2.2'
   spec.add_development_dependency 'sqlite3', '~> 1.4.2'
 
-  spec.add_runtime_dependency 'ar_after_transaction', '~> 0.7.0'
-  spec.add_runtime_dependency 'paper_trail', '~> 12.0.0'
+  spec.add_runtime_dependency 'ar_after_transaction', '>= 0.7.0'
+  spec.add_runtime_dependency 'paper_trail', '>= 12.0.0'
 end
