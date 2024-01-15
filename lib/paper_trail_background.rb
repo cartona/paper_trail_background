@@ -11,6 +11,6 @@ module PaperTrailBackground
   mattr_accessor :version_job_class
 
   def self.version_job_class
-    @@version_job_class.constantize
+    (@@version_job_class || "VersionJob").constantize
   end
 end
